@@ -6,7 +6,7 @@
 /*   By: sarajime <sarajime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:04:01 by sarajime          #+#    #+#             */
-/*   Updated: 2024/04/23 17:31:38 by sarajime         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:01:28 by sarajime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include "ft_printf.h"
 
 typedef struct s_list
 {

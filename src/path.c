@@ -6,7 +6,7 @@
 /*   By: sarajime <sarajime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 16:12:45 by sarajime          #+#    #+#             */
-/*   Updated: 2024/05/13 17:10:09 by sarajime         ###   ########.fr       */
+/*   Updated: 2024/05/15 18:36:28 by sarajime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**ft_copy_map(t_game *game)
 	int		i;
 
 	i = 0;
-	copy_map = malloc(sizeof(char *) * game->line);
+	copy_map = (char **)malloc(sizeof(char *) * game->line);
 	if (!copy_map)
 		return (NULL);
 	while (i < game->line)
@@ -42,7 +42,6 @@ static bool	floodfill(char **map, t_game game, int x, int y)
 
 	if (map[y][x] == '1' || map[y][x] == '*')
 	{
-		write(1, "adio\n", 5);
 		return (false);
 	}
 	if (game.map[y][x] == 'E')

@@ -6,19 +6,20 @@
 #    By: sarajime <sarajime@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 18:07:47 by sarajime          #+#    #+#              #
-#    Updated: 2024/05/10 16:16:28 by sarajime         ###   ########.fr        #
+#    Updated: 2024/05/15 17:46:18 by sarajime         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = gcc
 INCS = -I./src -L./get_libft -lft -L./MLX42 -lmlx42 -lglfw -L"/Users/sarajime/.brew/opt/glfw/lib/"
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 MLX42 = ./MLX42
 LIBFT = ./get_libft
 SRC_DIR = src/
 
-SRC_FILES = main.c end_game.c valid_game.c map_size.c map_utils.c path.c
+SRC_FILES = main.c end_game.c valid_game.c map_size.c map_utils.c path.c start_game.c \
+load_images.c game_moves.c
 
 
 

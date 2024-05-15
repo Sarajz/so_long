@@ -1,53 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_game.c                                         :+:      :+:    :+:   */
+/*   ft_count.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sarajime <sarajime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 18:22:21 by sarajime          #+#    #+#             */
-/*   Updated: 2024/05/15 18:30:08 by sarajime         ###   ########.fr       */
+/*   Created: 2023/12/26 14:44:02 by sarajime          #+#    #+#             */
+/*   Updated: 2023/12/26 14:44:49 by sarajime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-int	ft_exit(char *message)
+int	ft_putchar(char c)
 {
-	printf("%s", message);
-	exit(1);
+	write(1, &c, 1);
+	return (1);
 }
 
-void	frexit(char *message, t_game *game)
-{
-	printf("%s", message);
-	if (game->map[0])
-		free_map(game);
-	exit(0);
-}
-
-void	free_map(t_game *game)
+int	ft_putstr(char *str)
 {
 	int	i;
 
+	if (!str)
+		return (write(1, "(null)", 6));
 	i = 0;
-	while (game->map[i])
+	while (str[i] != '\0')
 	{
-		free(game->map[i]);
+		write(1, &str[i], 1);
 		i++;
 	}
-	free(game->map);
-}
-
-void	free_matrix(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
+	return (i);
 }

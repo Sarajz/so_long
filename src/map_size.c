@@ -6,7 +6,7 @@
 /*   By: sarajime <sarajime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:03:02 by sarajime          #+#    #+#             */
-/*   Updated: 2024/05/03 17:50:12 by sarajime         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:54:44 by sarajime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,3 @@ int	size_y(char **line)
 	}
 	return (i);
 }
-// int main()
-// {
-// 	t_game	game;
-	
-// 	int	fd = open("../maps/1.ber", O_RDONLY);
-// 	if (size_ok(fd, &game))
-// 		printf("Mapa valido!\n");
-// 	else
-// 		printf("Mapa no valido\n");
-// }

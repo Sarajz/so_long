@@ -6,36 +6,104 @@
 /*   By: sarajime <sarajime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:47:31 by sarajime          #+#    #+#             */
-/*   Updated: 2024/05/13 17:28:36 by sarajime         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:28:08 by sarajime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// Función de movimientos válidos
-// Función que mueva el personaje
-
-int	move_player(t_game *game)
+void	exit_no_win(t_game *game, int x, int y)
 {
-	
+	int	px;
+	int	py;
+
+	px = game->player_x;
+	py = game->player_y;
+	game->map[py][px] = '0';
+	game->map[py + y][px + x] = 'P';
+	game->player_x = game->player_x + x;
+	game->player_y = game->player_y + y;
+	mlx_image_to_window(game->mlx, game->img.exit, W_WIDTH * game->player_x, W_HEIGHT * game->player_y);
+	mlx_image_to_window(game->mlx, game->img.player, W_WIDTH * game->player_x, W_HEIGHT * game->player_y);
+	draw_map(px, py, '0', game);
 }
 
-int	key(int keycode, t_game *game)
+void	take_collectible(t_game *game, int x, int y)
 {
-	int	col;
-	int	line;
+	int	px;
+	int	py;
 
-	col = game->player_x;
-	line = game->player_y;
+	px = game->player_x;
+	py = game->player_y;
+		if (py == game->exit_y && px == game->exit_x)
+	{
+		game->map[py][px] = 'E';
+		game->map[py + y][px + x] = 'P';
+		game->player_x = game->player_x + x;
+		game->player_y = game->player_y + y;
+		draw_map(game->player_x, game->player_y, 'P', game);
+		draw_map(px, py, 'E', game);
+	}
+	else
+	{
+		game->map[py][px] = '0';
+		game->map[py + y][px + x] = 'P';
+		game->player_x = game->player_x + x;
+		game->player_y = game->player_y + y;
+		draw_map(game->player_x, game->player_y, 'P', game);
+		draw_map(px, py, '0', game);
+	}
+	game->count_collect--;
+}
 
-	if (keycode == A)
-		col--;
-	else if (keycode == D)
-		col++;
-	else if (keycode == W)
-		line--;
-	else if (keycode == S)
-		line++;
-	else if (keycode == ESC)
-		ft_close_window(game); //HACER (MLX)
+void	move_to_floor(t_game *game, int x, int y)
+{
+	int	px;
+	int	py;
+
+	px = game->player_x;
+	py = game->player_y;
+	if (py == game->exit_y && px == game->exit_x)
+	{
+		game->map[py][px] = 'E';
+		game->map[py + y][px + x] = 'P';
+		game->player_x = game->player_x + x;
+		game->player_y = game->player_y + y;
+		draw_map(game->player_x, game->player_y, 'P', game);
+		draw_map(px, py, 'E', game);
+	}
+	else
+	{
+		game->map[py][px] = '0';
+		game->map[py + y][px + x] = 'P';
+		game->player_x = game->player_x + x;
+		game->player_y = game->player_y + y;
+		draw_map(game->player_x, game->player_y, 'P', game);
+		draw_map(px, py, '0', game);
+	}
+}
+
+void	move_player(t_game *game, int x, int y)
+{
+	int	px;
+	int	py;
+
+	px = game->player_x;
+	py = game->player_y;
+	if (game->map[py + y][px + x] == '1')
+		return ;
+	if (game->map[py + y][px + x] == '0')
+		move_to_floor (game, x, y);
+	if (game->map[py + y][px + x] == 'C')
+		take_collectible(game, x, y);
+	if (game->map[py + y][px + x] == 'E' && game->count_collect != 0)
+		exit_no_win (game, x, y);
+	if (game->map[py + y][px + x] == 'E' && game->count_collect == 0)
+	{
+		ft_printf("YOU WIN IN %d MOVES\n", game->move);
+		mlx_close_window(game->mlx);
+		return ;
+	}
+	game->move++;
+	ft_printf("%d\n", game->move);
 }
