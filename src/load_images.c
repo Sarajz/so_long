@@ -6,7 +6,7 @@
 /*   By: sarajime <sarajime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:28:11 by sarajime          #+#    #+#             */
-/*   Updated: 2024/05/15 16:53:31 by sarajime         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:01:46 by sarajime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	load_image(t_game *game)
 	game->img.wall = mlx_texture_to_image(game->mlx, game->t.wall);
 	game->img.floor = mlx_texture_to_image(game->mlx, game->t.floor);
 	game->img.player = mlx_texture_to_image(game->mlx, game->t.player);
-	game->img.collectible = mlx_texture_to_image(game->mlx, game->t.collectible);
+	game->img.collectible = mlx_texture_to_image(game->mlx,
+			game->t.collectible);
 	game->img.exit = mlx_texture_to_image(game->mlx, game->t.exit);
 }
 

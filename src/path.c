@@ -6,7 +6,7 @@
 /*   By: sarajime <sarajime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 16:12:45 by sarajime          #+#    #+#             */
-/*   Updated: 2024/05/15 18:36:28 by sarajime         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:20:44 by sarajime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**ft_copy_map(t_game *game)
 	int		i;
 
 	i = 0;
-	copy_map = (char **)malloc(sizeof(char *) * game->line);
+	copy_map = (char **)malloc(sizeof(char *) * game->line + 1);
 	if (!copy_map)
 		return (NULL);
 	while (i < game->line)

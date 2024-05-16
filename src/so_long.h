@@ -6,7 +6,7 @@
 /*   By: sarajime <sarajime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:26:50 by sarajime          #+#    #+#             */
-/*   Updated: 2024/05/15 16:30:07 by sarajime         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:08:18 by sarajime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-#define W_WIDTH 	128
-#define W_HEIGHT 	128
+# define W_WIDTH 	128
+# define W_HEIGHT 	128
 
 typedef struct s_img
 {
@@ -46,18 +46,19 @@ typedef struct s_game
 	t_img		img;
 	t_texture	t;
 
-	int		count_player;
-	int		count_collect;
-	int		count_exit;
-	int		player_x;
-	int		player_y;
-	int		exit_x;
-	int		exit_y;
-	int		line;
-	int		col;
-	int		move;
-	char	**map;
-	mlx_t	*mlx;
+	char		**map;
+	int			count_player;
+	int			count_collect;
+	int			count_exit;
+	int			player_x;
+	int			player_y;
+	int			exit_x;
+	int			exit_y;
+	int			line;
+	int			col;
+	int			move;
+	mlx_image_t	*count_move;
+	mlx_t		*mlx;
 }	t_game;
 
 int		ft_exit(char *message);

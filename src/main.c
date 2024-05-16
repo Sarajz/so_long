@@ -6,7 +6,7 @@
 /*   By: sarajime <sarajime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:53:37 by sarajime          #+#    #+#             */
-/*   Updated: 2024/05/15 18:43:24 by sarajime         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:09:17 by sarajime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,23 @@ void	start_game(t_game *game)
 	game->col = 0;
 }
 
+static void	strtrim_map(t_game *game, int fd2)
+{
+	char	*temp;
+	int		i;
+
+	i = -1;
+	while (++i < game->line)
+	{
+		game->map[i] = get_next_line(fd2);
+		temp = game->map[i];
+		game->map[i] = ft_strtrim(game->map[i], "\n");
+		free(temp);
+	}
+	game->map[i] = NULL;
+	game->col = ft_strlen(game->map[i - 1]);
+}
+
 void	get_map(t_game *game, int fd, char **argv)
 {
 	int		i;
@@ -41,24 +58,10 @@ void	get_map(t_game *game, int fd, char **argv)
 		i++;
 	}
 	game->line = i;
-	game->map = (char **)malloc(sizeof(char *) * i);
+	game->map = (char **)malloc(sizeof(char *) * i + 1);
 	if (!game->map)
 		frexit("Error\n", game);
-	i = -1;
-	while (++i < game->line)
-	{
-		game->map[i] = get_next_line(fd2);
-		char *temp = game->map[i];
-		game->map[i] = ft_strtrim(game->map[i], "\n");
-		free(temp);
-	}
-	game->map[i] = NULL;
-	game->col = ft_strlen(game->map[i - 1]);
-}
-
-void leaks()
-{
-	system("leaks -q so_long");
+	strtrim_map(game, fd2);
 }
 
 int	main(int argc, char **argv)
@@ -66,7 +69,6 @@ int	main(int argc, char **argv)
 	t_game	game;
 	int		fd;
 
-	atexit(leaks);
 	fd = open(argv[1], O_RDONLY);
 	check_args(argc, argv);
 	start_game(&game);
